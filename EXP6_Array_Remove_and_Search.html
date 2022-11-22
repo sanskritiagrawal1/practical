@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>JS Array Practical</title> 
+</head> 
+<body> 
+<h1>Javascript Array Programs</h1> 
+<h3 id="array"></h3> 
+<label for="no_remove">Enter number to remove element from array: </label> 
+<input type="number" name="no_remove" id="no_remove"> 
+<button onclick="remove()">Remove Element</button> 
+<br><br> 
+<label for="no_search">Enter number to search in the array: </label> 
+<input type="number" name="no_search" id="no_search"> 
+<button onclick="search()">Search Element</button> 
+<br><br> 
+<button onclick="empty()">Empty array</button> 
+<h2 id="result"></h2> 
+<script>
+const removeArray = (num, array) =>{ 
+let index = array.indexOf(num) 
+if(index !== -1){ 
+array.splice(index,1) 
+console.log(array) 
+return `Element is removed successfuly form index ${index}` 
+}else{ 
+return "Element not found....." 
+} 
+} 
+const searchArray = (num, array) =>{ 
+let index = array.indexOf(num) 
+if(index !== -1){ 
+return `Element is present at index ${index}!` 
+}else{ 
+return "Element not found....."}} 
+const emptyArray = (array) =>{ 
+array.splice(0, array.length) 
+console.log(array)} 
+let array = [2, 5, 6, 9, 20, 17] 
+console.log(array) 
+let numToRemove, numToSearch; 
+let htmlText = document.getElementById("array").innerHTML = `Array : [${array}]` 
+const remove = () =>{ 
+numToRemove = document.getElementById("no_remove").value 
+if(numToRemove.length === 0){ 
+alert("Please enter some number...."); 
+}else{ 
+    let result = removeArray(Number(numToRemove), array) 
+    document.getElementById("result").innerHTML = `${result}` 
+    }} 
+    const search = () =>{ 
+    numToSearch = document.getElementById("no_search").value 
+    if(numToSearch.length === undefined){ 
+    alert("Please enter some number....."); 
+    }else{ 
+    let result = searchArray(Number(numToSearch), array) 
+    document.getElementById("result").innerHTML = `${result}` 
+    }} 
+    const empty = () =>{ 
+    emptyArray(array); 
+    document.getElementById("result").innerHTML = "Array is empty." 
+    }
+</script>
+</body> 
+</html> 

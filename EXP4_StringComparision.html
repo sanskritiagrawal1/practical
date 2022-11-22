@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>String Comparison</title> 
+</head> 
+<body> 
+<h1>String Comparison program</h1> 
+<form onsubmit ="return false"> 
+<input type="text" name="string" id="string1" placeholder="Enter your string 1" 
+onchange='saveValue(this)'> 
+<input type="text" name="string" id="string2" placeholder="Enter your string 2" 
+onchange='saveValue(this)'> 
+<button onclick="strComp()">Compare Strings</button> 
+</form><br><br> 
+<div> 
+<h3>Using '===': </h3> 
+<h3 id="result1"></h3> 
+</div><br><br> 
+<div> 
+<h3>Using localCompare(string): </h3> 
+<h3 id="result2"></h3> 
+</div><br><br> 
+<div> 
+<h3>Using includes(): </h3> 
+<h3 id="result3"></h3> 
+</div> 
+<br><br> 
+<div> 
+<h3>Using RegExp(): </h3> 
+<h3 id="result4"></h3> 
+</div> 
+<script>
+let string1, string2 
+function strComp() { 
+string1 = document.getElementById("string1").value 
+string2 = document.getElementById("string2").value 
+let s1 = string1.toLowerCase(); 
+let s2 = string2.toLowerCase(); 
+if(s1 === s2){ 
+document.getElementById("result1").innerHTML = "Strings are same" 
+}else{ 
+document.getElementById("result1").innerHTML = "Strings are not same" 
+} 
+let s3 = string1.localeCompare(string2) 
+if(s3 === 0){ 
+document.getElementById("result2").innerHTML = "Strings are same" 
+}else{ 
+document.getElementById("result2").innerHTML = "Strings are not same" 
+} 
+let result = s1.includes(s2); 
+if(result){ 
+document.getElementById("result3").innerHTML = "Strings are same" 
+}else{ 
+document.getElementById("result3").innerHTML = "Strings are not same" 
+} 
+let pattern = new RegExp(string1, 'gi') 
+result2 = pattern.test(string2) 
+if(result2){ 
+document.getElementById("result4").innerHTML = "Strings are same" 
+}else{ 
+document.getElementById("result4").innerHTML = "Strings are not same" 
+} 
+}
+</script>
+</body> 
+</html> 
