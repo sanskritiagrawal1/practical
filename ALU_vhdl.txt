@@ -1,0 +1,40 @@
+	-- Design Name:  4 bit ALU Design. 
+	-- Module Name:    alu_4bit - Behavioral 
+
+--------------------------------------------------------
+--Name of Designer: Shubham Kulkarni    Roll No.: 404031    
+
+--Date of Design:  07/07/2017    
+--Date of Verification: 07/07/2017 
+--Date of Testing: 07/07/2017
+--------------------------------------------------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use ieee.std_logic_unsigned.all; 
+ 
+
+entity alu_4bit is
+    Port ( A,B : in  STD_LOGIC_VECTOR (3 downto 0);
+             m : in  STD_LOGIC_VECTOR (2 downto 0);
+             Y : out  STD_LOGIC_VECTOR (4 downto 0));
+end alu_4bit;
+
+
+architecture Behavioral of alu_4bit is
+
+begin
+
+ Y <= ('0' & A) + ('0' & B) when m ="000" else  -- Addition 
+      ('0' & A) - ('0' & B) when m ="001" else  -- Subtraction 
+		
+	      '-' & (A and B)    when m ="010" else  -- AND 
+	      '-' & (A nand B)   when m ="011" else  -- NAND 
+	      '-' & (A xor B)    when m ="100" else  -- ExOR 
+	      '-' & (A xnor B)   when m ="101" else  -- ExNOR 
+	      '-' & (A or B)     when m ="110" else  -- OR 
+               ('-' & A);                       -- ALUPass
+
+end Behavioral;
+

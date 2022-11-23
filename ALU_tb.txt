@@ -1,0 +1,90 @@
+---------------------------- Test Bench -------------------------------
+-- Company:  SCOE E&TC
+-- Engineer: Shubham Kulkarni     Roll No.: 404031   
+--
+-- Create Date:   20:31:06 07/10/2017
+-- Design Name:   
+-- Module Name:   F:/xilinx codes/practalu/practalu/tb_alu_tb2.vhd
+-- Project Name:  practalu
+-----------------------------------------------------------------------
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ 
+ 
+ENTITY tb_alu_4bit IS
+END tb_alu_4bit;
+ 
+
+ARCHITECTURE behavior OF tb_alu_4bit IS 
+ 
+    COMPONENT alu_4bit
+    PORT(
+         A : IN  std_logic_vector(3 downto 0);
+         B : IN  std_logic_vector(3 downto 0);
+         m : IN  std_logic_vector(2 downto 0);
+         Y : OUT  std_logic_vector(4 downto 0)
+        );
+    END COMPONENT;
+    
+
+   --Inputs
+   signal A : std_logic_vector(3 downto 0) := (others => '0');
+   signal B : std_logic_vector(3 downto 0) := (others => '0');
+   signal m : std_logic_vector(2 downto 0) := (others => '0');
+
+ 	--Outputs
+   signal Y : std_logic_vector(4 downto 0);
+
+ 
+
+BEGIN
+ 
+	-- Instantiate the Unit Under Test (UUT)
+   uut: alu_4bit PORT MAP (
+          A => A,
+          B => B,
+          m => m,
+          Y => Y
+        );
+
+
+   -- Stimulus process
+   stim_proc: process
+
+   begin		
+
+		
+		A <= "1011" ;
+		B <= "0111" ;
+		
+			m <= "000" ;		-- Addition 
+			  wait for 125 ns;		
+
+			m <= "001" ;		-- Subtraction 
+			  wait for 125 ns;		
+
+			m <= "010" ;		-- AND 
+			  wait for 125 ns;		
+
+			m <= "011" ;		-- NAND 
+			  wait for 125 ns;		
+
+			m <= "100" ;		-- ExOR 
+			  wait for 125 ns;		
+
+			m <= "101" ;		-- ExNOR 
+			  wait for 125 ns;		
+
+			m <= "110" ;		-- OR 
+			  wait for 125 ns;		
+
+			m <= "111" ;		-- ALUPass
+			  wait for 125 ns;		
+
+	
+      wait;
+   end process;
+
+END;
